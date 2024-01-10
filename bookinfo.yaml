@@ -346,10 +346,17 @@ spec:
   kind: Ingress
   metadata:
     name: base-ingress
+    annotations:
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
   spec:
     ingressClassName: nginx
+    tls:
+      - hosts:
+        - k8s-uptime.ru
+        secretName: ingress-cert
     rules:
-      - http:
+      - host: k8s-uptime.ru
+        http:
           paths:
             - pathType: Prefix
               backend:
