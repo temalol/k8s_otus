@@ -26,7 +26,19 @@ spec:
         - name: LOG_DIR
           value: "/tmp/logs"
         ports:
-        - containerPort: 9080
+        - containerPort: {{ .Values.reviews.port }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.reviews.probePath }}
+            port: {{ .Values.reviews.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.reviews.probePath }}
+            port: {{ .Values.reviews.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
         volumeMounts:
         - name: tmp
           mountPath: /tmp
