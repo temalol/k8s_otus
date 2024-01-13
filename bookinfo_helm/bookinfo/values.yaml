@@ -8,3 +8,11 @@ productpage:
 reviews:
   port: 9080
   probePath: /health
+
+details:
+  port: 9080
+  probePath: /health
+
+ratings:
+  port: 9080
+  probePath: /health

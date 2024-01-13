@@ -23,6 +23,18 @@ spec:
         image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-details-v1:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 9080
+        - containerPort: {{ .Values.details.port }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.details.probePath }}
+            port: {{ .Values.details.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.details.probePath }}
+            port: {{ .Values.details.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
         securityContext:
           runAsUser: 1000
