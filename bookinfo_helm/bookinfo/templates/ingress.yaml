@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-      - k8s-uptime.ru
+      - {{ .Values.ingress.hostname }}
       secretName: ingress-cert
   rules:
-    - host: k8s-uptime.ru
+    - host: {{ .Values.ingress.hostname }}
       http:
         paths:
           - pathType: Prefix
