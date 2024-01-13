@@ -5,6 +5,7 @@ productpage:
   port: 9080
   probePath: /health
   image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-productpage-v1:latest
+  replicas: 1
 
 reviews:
   port: 9080
@@ -12,13 +13,16 @@ reviews:
   image_v1: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-reviews-v1:latest
   image_v2: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-reviews-v2:latest
   image_v3: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-reviews-v3:latest
+  replicas: 1
 
 details:
   port: 9080
   probePath: /health
   image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-details-v1:latest
+  replicas: 1
 
 ratings:
   port: 9080
   probePath: /health
   image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-ratings-v1:latest
+  replicas: 1

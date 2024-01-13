@@ -6,7 +6,7 @@ metadata:
     app: reviews
     version: v3
 spec:
-  replicas: 2
+  replicas: {{ .Values.reviews.replicas }}
   selector:
     matchLabels:
       app: reviews
