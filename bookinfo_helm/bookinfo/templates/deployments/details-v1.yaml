@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-details
       containers:
       - name: details
-        image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-details-v1:latest
+        image: {{ .Values.details.image }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.details.port }}

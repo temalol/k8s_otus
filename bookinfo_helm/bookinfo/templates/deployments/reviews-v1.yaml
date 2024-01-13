@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-reviews-v1:latest
+        image: {{ .Values.reviews.image_v1 }}
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR

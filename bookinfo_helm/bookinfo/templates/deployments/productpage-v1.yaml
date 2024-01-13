@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
-        image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-productpage-v1:latest
+        image:  {{ .Values.productpage.image }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.productpage.port }}

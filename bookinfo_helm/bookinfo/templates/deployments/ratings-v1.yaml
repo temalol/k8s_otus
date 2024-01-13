@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
-        image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-ratings-v1:latest
+        image: {{ .Values.ratings.image }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.ratings.port }}
