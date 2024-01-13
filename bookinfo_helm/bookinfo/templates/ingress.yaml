@@ -14,17 +14,19 @@ spec:
     - host: {{ .Values.ingress.hostname }}
       http:
         paths:
-          - pathType: Prefix
+          - path: /grafana/
+            pathType: Prefix
+            backend:
+              service: 
+                name: bookinfo-grafana
+                port:
+                  number: 80
+          - path: / 
+            pathType: Prefix
             backend:
               service:
                 name: productpage
                 port:
                   number: {{ .Values.productpage.port }}
-            path: /
-          - path: /grafana
-            backend:
-              service: 
-                name: bookinfo-grafana
-                port:
-                  number: 3000
+
               
