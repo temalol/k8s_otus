@@ -4,3 +4,7 @@ ingress:
 productpage:
   port: 9080
   probePath: /health
+
+reviews:
+  port: 9080
+  probePath: /health
