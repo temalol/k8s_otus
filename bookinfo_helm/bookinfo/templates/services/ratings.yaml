@@ -7,7 +7,7 @@ metadata:
     service: ratings
 spec:
   ports:
-  - port: 9080
+  - port: {{ .Values.ratings.port }}
     name: http
   selector:
     app: ratings
