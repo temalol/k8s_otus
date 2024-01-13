@@ -3,3 +3,4 @@ ingress:
 
 productpage:
   port: 9080
+  probePath: /health
