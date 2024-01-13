@@ -23,7 +23,19 @@ spec:
         image: cr.yandex/crpc095vbc09hplu2d7e/bookinfo/examples-bookinfo-productpage-v1:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 9080
+        - containerPort: {{ .Values.productpage.port }}
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: {{ .Values.productpage.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: {{ .Values.productpage.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
         volumeMounts:
         - name: tmp
           mountPath: /tmp

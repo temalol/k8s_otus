@@ -19,5 +19,5 @@ spec:
               service:
                 name: productpage
                 port:
-                  number: 9080
+                  number: {{ .Values.productpage.port }}
             path: /

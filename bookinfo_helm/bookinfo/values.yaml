@@ -1,2 +1,5 @@
 ingress:
   hostname: k8s-uptime.ru
+
+productpage:
+  port: 9080

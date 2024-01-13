@@ -7,7 +7,7 @@ metadata:
     service: productpage
 spec:
   ports:
-  - port: 9080
+  - port: {{ .Values.productpage.port }}
     name: http
   selector:
     app: productpage
