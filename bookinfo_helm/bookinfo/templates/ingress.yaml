@@ -21,10 +21,10 @@ spec:
                 port:
                   number: {{ .Values.productpage.port }}
             path: /
-          - pathType: Prefix
+          - path: /grafana
             backend:
-              service:
+              service: 
                 name: bookinfo-grafana
                 port:
                   number: 3000
-            path: /grafana
+              
