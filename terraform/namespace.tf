@@ -3,3 +3,9 @@ resource "kubernetes_namespace" "example" {
     name = "ingress-nginx"
   }
 }
+
+resource "kubernetes_namespace" "example" {
+  metadata {
+    name = "bookinfo"
+  }
+}
