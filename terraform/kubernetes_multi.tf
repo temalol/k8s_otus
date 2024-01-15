@@ -93,6 +93,27 @@ resource "yandex_resourcemanager_folder_iam_member" "images-puller" {
   member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
 }
 
+resource "yandex_resourcemanager_folder_iam_member" "editor" {
+  # Сервисному аккаунту назначается роль "editor".
+  folder_id = local.folder_id
+  role      = "editor"
+  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+}
+
+resource "yandex_resourcemanager_folder_iam_member" "logging-writer" {
+  # Сервисному аккаунту назначается роль "logging.writer".
+  folder_id = local.folder_id
+  role      = "logging.writer"
+  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+}
+
+resource "yandex_resourcemanager_folder_iam_member" "load-balancer" {
+  # Сервисному аккаунту назначается роль "load-balancer.admin".
+  folder_id = local.folder_id
+  role      = "load-balancer.admin"
+  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+}
+
 resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
   # Сервисному аккаунту назначается роль "kms.keys.encrypterDecrypter".
   folder_id = local.folder_id
