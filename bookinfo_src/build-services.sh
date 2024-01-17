@@ -17,8 +17,8 @@
 set -ox errexit
 
 # Get to the root directory of the repo...
-SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd "$SCRIPTDIR/../../.."
+#SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+#cd "$SCRIPTDIR/../../.."
 
 h="${BOOKINFO_HUB:?BOOKINFO_HUB must be set}"
 t="${BOOKINFO_TAG:?BOOKINFO_TAG must be set}"
