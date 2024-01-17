@@ -7,3 +7,7 @@ helm repo update && \
 helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx  --set controller.replicaCount=2 --set controller.metrics.enabled=true \
 --set-string controller.podAnnotations."prometheus\.io/scrape"="true" \
 --set-string controller.podAnnotations."prometheus\.io/port"="10254"
+
+
+App install
+helm secrets upgrade  --install bookinfo . -f ./secret.yaml --namespace bookinfo
