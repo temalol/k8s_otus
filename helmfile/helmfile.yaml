@@ -1,0 +1,8 @@
+repositories:
+ - name: ingress-nginx-fork
+   url: https://github.com/temalol/ingress-nginx-fork
+
+releases:
+- name: ingress-nginx-fork
+  namespace: ingress-nginx
+  chart: ingress-nginx
