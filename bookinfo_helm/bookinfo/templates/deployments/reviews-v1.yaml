@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: {{ .Values.reviews.image_v1 }}
+        image: '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.registry.folder }}/{{ .Values.reviews.image_v1 }}'
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR

@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
-        image:  {{ .Values.productpage.image }}
+        image:  '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.registry.folder }}/{{ .Values.productpage.image }}'
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.productpage.port }}

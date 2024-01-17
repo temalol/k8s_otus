@@ -20,7 +20,7 @@ spec:
       serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
-        image: {{ .Values.ratings.image }}
+        image: '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.registry.folder }}/{{ .Values.ratings.image }}'
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.ratings.port }}
