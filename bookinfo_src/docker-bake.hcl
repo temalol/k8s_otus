@@ -12,7 +12,7 @@ variable "HUB" {
 target "examples-bookinfo-productpage-v1" {
   tags = ["${HUB}/examples-bookinfo-productpage-v1:${TAG}"]
   platforms = ["linux/amd64", "linux/arm64"]
-  context = "./samples/bookinfo/src/productpage"
+  context = "./productpage"
 }
 target "examples-bookinfo-productpage-v-flooding" {
   tags = ["${HUB}/examples-bookinfo-productpage-v-flooding:${TAG}"]
@@ -20,7 +20,7 @@ target "examples-bookinfo-productpage-v-flooding" {
   args = {
     flood_factor = 100
   }
-  context = "./samples/bookinfo/src/productpage"
+  context = "./productpage"
 }
 
 // Details
@@ -30,7 +30,7 @@ target "examples-bookinfo-details-v1" {
   args = {
     service_version = "v1"
   }
-  context = "./samples/bookinfo/src/details"
+  context = "./details"
 }
 target "examples-bookinfo-details-v2" {
   tags = ["${HUB}/examples-bookinfo-details-v2:${TAG}"]
@@ -49,7 +49,7 @@ target "examples-bookinfo-reviews-v1" {
   args = {
     service_version = "v1"
   }
-  context = "./samples/bookinfo/src/reviews"
+  context = "./reviews"
 }
 target "examples-bookinfo-reviews-v2" {
   tags = ["${HUB}/examples-bookinfo-reviews-v2:${TAG}"]
@@ -58,7 +58,7 @@ target "examples-bookinfo-reviews-v2" {
     service_version = "v2"
     enable_ratings = true
   }
-  context = "./samples/bookinfo/src/reviews"
+  context = "./reviews"
 }
 target "examples-bookinfo-reviews-v3" {
   tags = ["${HUB}/examples-bookinfo-reviews-v3:${TAG}"]
@@ -68,7 +68,7 @@ target "examples-bookinfo-reviews-v3" {
     enable_ratings = true
     star_color = "red"
   }
-  context = "./samples/bookinfo/src/reviews"
+  context = "./reviews"
 }
 
 // Ratings
@@ -78,7 +78,7 @@ target "examples-bookinfo-ratings-v1" {
   args = {
     service_version = "v1"
   }
-  context = "./samples/bookinfo/src/ratings"
+  context = "./ratings"
 }
 target "examples-bookinfo-ratings-v2" {
   tags = ["${HUB}/examples-bookinfo-ratings-v2:${TAG}"]
