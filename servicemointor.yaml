@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: productpage
+  # Change this to the namespace the Prometheus instance is running in
+  # namespace: default
+  labels:
+    app: productpage
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: productpage # target gitlab service
+  endpoints:
+  - port: http
+    interval: 15s
+  namespaceSelector:
+    matchNames:
+    - bookinfo
