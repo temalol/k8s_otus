@@ -1,8 +1,14 @@
-repositories:
- - name: ingress-nginx-fork
-   url: https://github.com/temalol/ingress-nginx-fork
+helmDefaults:
+  createNamespace: true
+
 
 releases:
-- name: ingress-nginx-fork
-  namespace: ingress-nginx
-  chart: ingress-nginx
+- name: prometheus
+  namespace: prometheus
+  chart: oci://cr.yandex/crpvgsl5tj816ghc4dn2/kube-prometheus-stack
+  version: 55.11.0
+
+- name: ingress-nginx
+  namespace: nginx-ingress
+  chart: oci://cr.yandex/crpvgsl5tj816ghc4dn2/ingress-nginx
+  version: 4.9.0
