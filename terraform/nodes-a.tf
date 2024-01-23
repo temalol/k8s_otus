@@ -1,6 +1,6 @@
-resource "yandex_kubernetes_node_group" "group_a" {
+resource "yandex_kubernetes_node_group" "group-a" {
   cluster_id  = "${yandex_kubernetes_cluster.k8s-regional.id}"
-  name        = "wokernodes"
+  name        = "wokernodes-a"
   description = "description"
   version     = "1.28"
 
