@@ -6,14 +6,28 @@ repositories:
 - name: kube-prometheus-stack
   url: "git+https://github.com/temalol/kube-prometheus-stack@kube-prometheus-stack?ref=main"
 
-#- name: ingress-nginx
-
+- name: ingress-nginx
+  url: "git+https://github.com/temalol/ingress-nginx-base@ingress-nginx?ref=main"
 
 releases:
 - name: kube-prometheus-stack
   namespace: prometheus
   chart: "kube-prometheus-stack/kube-prometheus-stack"
 
-#- name: ingress-nginx
-#  namespace: ingress-nginx
-#  chart: oci://cr.yandex/crpvgsl5tj816ghc4dn2/ingress-nginx
+- name: ingress-nginx
+  namespace: ingress-nginx
+  chart: "ingress-nginx/ingress-nginx"
+
+- name: yc-csi-s3
+  namespace: kube-system
+  chart: oci://cr.yandex/yc-marketplace/yandex-cloud/csi-s3/csi-s3
+  version: 0.35.5
+  values:
+  set:
+  - name: secret.accessKey
+    value: "YCAJEqoWGOdUGzisQ3ydkKbs7"
+  - name: secret.secretKey
+    value: "YCPl6txdfekl7NUDnbsulbi49lI1tmaThEcxzFDC"
+    
+
+
