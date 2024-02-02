@@ -22,12 +22,9 @@ releases:
   namespace: kube-system
   chart: oci://cr.yandex/yc-marketplace/yandex-cloud/csi-s3/csi-s3
   version: 0.35.5
-  values:
-  set:
-  - name: secret.accessKey
-    value: "YCAJEqoWGOdUGzisQ3ydkKbs7"
-  - name: secret.secretKey
-    value: "YCPl6txdfekl7NUDnbsulbi49lI1tmaThEcxzFDC"
+  secrets:
+    - infra_secrets.yaml
+
     
 
 
