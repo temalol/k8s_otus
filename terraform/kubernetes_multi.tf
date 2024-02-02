@@ -72,6 +72,21 @@ resource "yandex_iam_service_account" "my-regional-account" {
   folder_id = var.yc_folder
 }
 
+resource "yandex_iam_service_account" "bucket" {
+  name        = "bucket"
+  description = "s3 bucket service account"
+  folder_id = var.yc_folder
+}
+
+resource "yandex_resourcemanager_folder_iam_member" "storage-editor" {
+  # Сервисному аккаунту назначается роль "storage.editor".
+  folder_id = var.yc_folder
+  role      = "storage.editor"
+  member    = "serviceAccount:${yandex_iam_service_account.bucket.id}"
+}
+
+
+
 resource "yandex_resourcemanager_folder_iam_member" "k8s-clusters-agent" {
   # Сервисному аккаунту назначается роль "k8s.clusters.agent".
   folder_id = var.yc_folder
