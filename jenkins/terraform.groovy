@@ -15,7 +15,6 @@ pipeline {
         stage('Terraform apply') {
             steps {
                dir('terraform') {
-                    sh "touch .terraform"
                     sh "terraform init -upgrade -input=false"
                 }
             }
