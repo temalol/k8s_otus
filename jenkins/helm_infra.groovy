@@ -19,7 +19,6 @@ pipeline {
                                     writeFile(file: "kube.conf", text: "${kubeconfig}") 
                                     sh "gpg --import ${helm_gpg_public}"
                     }
-                        sh "helm plugin install https://github.com/jkroepke/helm-secrets --version v4.5.1"
                         sh "helm plugin list"
                         sh "helmfile sync"
                 }
