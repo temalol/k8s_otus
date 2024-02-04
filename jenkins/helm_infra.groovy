@@ -20,7 +20,7 @@ pipeline {
                         writeFile(file: "public.gpg", text: "${helm_gpg_public}")
                         }
                         sh "ls -la"
-                        sh "public.gpg"
+                        sh "cat public.gpg"
                         sh "gpg --import public.gpg"
                         sh "gpg --import private.gpg"
                         sh "helm plugin list"
