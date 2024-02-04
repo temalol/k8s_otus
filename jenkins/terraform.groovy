@@ -4,6 +4,9 @@ pipeline {
     parameters { 
         choice(name: 'TERRAFORM_OPTS', choices: ['destroy', 'apply'], description: '')
     }
+    options {
+        ansiColor('xterm')
+    }
     environment {
         AWS_ACCESS_KEY_ID     = credentials('s3-terraform-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('s3-terraform-secret-access-key')
