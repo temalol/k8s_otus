@@ -9,6 +9,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('s3-terraform-secret-access-key')
         TF_CLI_CONFIG_FILE = "terraform.tfrc"
         TF_IN_AUTOMATION      = '1'
+        HOME = "${env.WORKSPACE}"
     }    
     stages {
         stage('Terraform apply') {
