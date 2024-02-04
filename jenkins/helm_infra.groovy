@@ -15,10 +15,11 @@ pipeline {
                                     
                                     writeFile(file: "kube.conf", text: "${kubeconfig}") 
                                     sh "gpg --batch --allow-secret-key-import --import ${helm_gpg_private}"
-                    }
+                    
                         sh "helm plugin list"
                     withEnv(["KUBECONFIG=${kubeconfig}"]){
                         sh "helmfile sync"
+                    }
                     }
                 }
             }
