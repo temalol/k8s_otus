@@ -17,8 +17,10 @@ pipeline {
         stage('Terraform apply') {
             steps {
                dir('terraform') {
-                    sh "terraform init -upgrade -input=false"
-                    sh "terraform plan"
+                    withCredentials([file(credentialsId: 'terraform_key_sa', variable: 'terraform_key_sa.json')]) {
+                        sh "terraform init -upgrade -input=false"
+                        sh "terraform plan"
+                    }
                }
             }
         }

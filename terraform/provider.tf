@@ -22,10 +22,8 @@ terraform {
   }
 }
 
-
-
 provider "yandex" {
-  service_account_key_file = "/Users/artem/key.json"
+  service_account_key_file = "terraform_key_sa.json"
   cloud_id = "cloud-temalol13"
 }
 
