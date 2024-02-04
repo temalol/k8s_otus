@@ -14,7 +14,7 @@ pipeline {
         stage('Terraform apply') {
             steps {
                dir('terraform') {
-                    sh "terraform init -input=false"
+                    sh "terraform init -upgrade -input=false"
                 }
             }
         }
