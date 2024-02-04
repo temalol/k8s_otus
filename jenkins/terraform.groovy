@@ -13,7 +13,7 @@ pipeline {
         stage('Terraform apply') {
             steps {
                dir('terraform') {
-                    sh "terraform init -migrate-state -backend-config=access_key=\"$AWS_ACCESS_KEY_ID\" -backend-config=secret_key=\"$AWS_SECRET_ACCESS_KEY\""
+                    sh "terraform init -migrate-state -backend-config=access_key="YCAJEWWeJSl30NxFUswHCkuZZ" -backend-config=secret_key="YCN5rCGPmw5QvgQbyEg3QeROA6fYnNFgIpi040wF""
                }
             }
         }
