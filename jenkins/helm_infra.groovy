@@ -12,9 +12,10 @@ pipeline {
         stage("Run helmfile") {
             steps {
                dir('helmfile_infra') {
-                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig')]) {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig')], [file(credentialsId: 'helm_gpg_key', variable: 'helm_gpg_key')]) {
                         writeFile(file: "kube.conf", text: "${kubeconfig}") 
-                        sh "helm plugin install https://github.com/aslafy-z/helm-git --version 0.15.1"
+                        writeFile(file: "key.gpg", text: "${helm_gpg_key}") 
+                        sh "gpg --allow-secret-key-import --import key.gpg"
                         sh "helm plugin list"
                         sh "helmfile sync"
                     }
