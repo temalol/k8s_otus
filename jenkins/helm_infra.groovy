@@ -17,7 +17,7 @@ pipeline {
                                     file(credentialsId: 'pgp_public', variable: 'helm_gpg_public')]) {
                                     
                                     writeFile(file: "kube.conf", text: "${kubeconfig}") 
-                                    sh "gpg --allow-secret-key-import --import ${helm_gpg_private}"
+                                    sh "gpg --batch --allow-secret-key-import --import ${helm_gpg_private}"
                     }
                         sh "helm plugin list"
                         sh "helmfile sync"
