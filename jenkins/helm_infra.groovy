@@ -15,7 +15,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig'),
                                     file(credentialsId: 'gpg_private', variable: 'helm_gpg_private'),
                                     file(credentialsId: 'pgp_public', variable: 'helm_gpg_public')]) {
-                        var = $helm_gpg_private
+                        def var = $helm_gpg_private
                         writeFile(file: "kube.conf", text: "${kubeconfig}") 
                         writeFile(file: "private.gpg", text: "${helm_gpg_private}")
                         writeFile(file: "public.gpg", text: "${helm_gpg_public}")
