@@ -7,7 +7,6 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('s3-terraform-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('s3-terraform-secret-access-key')
-        TF_CLI_CONFIG_FILE = 
     }    
     stages {
         stage('Terraform apply') {
