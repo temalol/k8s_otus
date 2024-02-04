@@ -6,7 +6,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') 
     }
     environment {
-        KUBECONFIG="kube.conf"g
+        KUBECONFIG="kube.conf"
     }    
     stages {
         stage("Run helmfile") {
