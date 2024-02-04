@@ -15,11 +15,12 @@ pipeline {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig'),
                                     file(credentialsId: 'gpg_private', variable: 'helm_gpg_private'),
                                     file(credentialsId: 'pgp_public', variable: 'helm_gpg_public')]) {
+                        var = $helm_gpg_private
                         writeFile(file: "kube.conf", text: "${kubeconfig}") 
                         writeFile(file: "private.gpg", text: "${helm_gpg_private}")
                         writeFile(file: "public.gpg", text: "${helm_gpg_public}")
                         }
-                        println ("${helm_gpg_private}")
+                        println ("${var}")
                         sh "gpg --import public.gpg"
                         sh "gpg --import private.gpg"
                         sh "helm plugin list"
