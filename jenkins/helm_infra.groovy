@@ -12,12 +12,15 @@ pipeline {
         stage("Run helmfile") {
             steps {
                dir('helmfile_infra') {
-                     sh "helmfile sync"
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig')]) {
+                        writeFile(file: "kube.conf", text: "${kubeconfig}") 
+                        sh "helmfile sync"
                     }
-               }
+                }
             }
         }
     }
+
  post {
         // Clean after build
         always {
