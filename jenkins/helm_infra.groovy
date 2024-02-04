@@ -14,6 +14,7 @@ pipeline {
                dir('helmfile_infra') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig')]) {
                         writeFile(file: "kube.conf", text: "${kubeconfig}") 
+                        sh "helm plugin install https://github.com/aslafy-z/helm-git --version 0.15.1"
                         sh "helm plugin list"
                         sh "helmfile sync"
                     }
