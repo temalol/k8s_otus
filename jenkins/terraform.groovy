@@ -13,6 +13,7 @@ pipeline {
         stage('Terraform apply') {
             steps {
                dir('terraform') {
+                    sh "whoami"
                     sh "terraform init -migrate-state"
                }
             }
