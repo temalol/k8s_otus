@@ -6,6 +6,7 @@ pipeline {
     }
     options {
         ansiColor('xterm')
+        timeout(time: 1, unit: 'HOURS') 
     }
     environment {
         AWS_ACCESS_KEY_ID     = credentials('s3-terraform-secret-key-id')
