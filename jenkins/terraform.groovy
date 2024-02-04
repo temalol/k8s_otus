@@ -1,3 +1,5 @@
+//Terraform apply/destroy pipeline
+
 pipeline {
     agent any
 
