@@ -13,10 +13,13 @@ pipeline {
             steps {
                dir('helmfile_infra') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig'),
-                                    file(credentialsId: 'helm_gpg_key', variable: 'helm_gpg_key')]) {
+                                    file(credentialsId: 'gpg_private', variable: 'helm_gpg_private'),
+                                    file(credentialsId: 'pgp_public', variable: 'helm_gpg_public')]) {
                         writeFile(file: "kube.conf", text: "${kubeconfig}") 
-                        writeFile(file: "key.gpg", text: "${helm_gpg_key}") 
-                        sh "gpg --allow-secret-key-import --import key.gpg"
+                        writeFile(file: "private.gpg", text: "${helm_gpg_private}")
+                        writeFile(file: "public.gpg", text: "${helm_gpg_public}")
+                        sh "gpg --import public.gpg"
+                        sh "$ gpg --import private.gpg"
                         sh "helm plugin list"
                         sh "helmfile sync"
                     }
