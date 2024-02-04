@@ -12,7 +12,7 @@ pipeline {
         stage('Terraform apply') {
             steps {
                dir('terraform') {
-                    sh "terraform -reconfigure ${TERRAFORM_OPTS} -auto-approve"
+                    sh "terraform -reconfigure"
                }
             }
         }
