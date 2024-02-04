@@ -18,6 +18,7 @@ pipeline {
                         writeFile(file: "kube.conf", text: "${kubeconfig}") 
                         writeFile(file: "private.gpg", text: "${helm_gpg_private}")
                         writeFile(file: "public.gpg", text: "${helm_gpg_public}")
+                        sh "cat private.gpg"
                         sh "gpg --import public.gpg"
                         sh "gpg --import private.gpg"
                         sh "helm plugin list"
