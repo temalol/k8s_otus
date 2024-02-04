@@ -15,7 +15,7 @@ pipeline {
         TF_IN_AUTOMATION      = '1'
     }    
     stages {
-        stage('Terraform apply') {
+        stage("Terraform $TERRAFORM_OPTS") {
             steps {
                dir('terraform') {
                     withCredentials([file(credentialsId: 'terraform_key_sa', variable: 'terraform_key_sa')]) {
