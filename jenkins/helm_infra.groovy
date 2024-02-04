@@ -19,7 +19,7 @@ pipeline {
                         writeFile(file: "private.gpg", text: "${helm_gpg_private}")
                         writeFile(file: "public.gpg", text: "${helm_gpg_public}")
                         sh "gpg --import public.gpg"
-                        sh "$ gpg --import private.gpg"
+                        sh "gpg --import private.gpg"
                         sh "helm plugin list"
                         sh "helmfile sync"
                     }
