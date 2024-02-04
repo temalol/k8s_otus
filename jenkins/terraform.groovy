@@ -20,7 +20,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'terraform_key_sa', variable: 'terraform_key_sa')]) {
                         writeFile(file: "terraform_key_sa.json", text: "${terraform_key_sa}")
                         sh "terraform init -upgrade -input=false"
-                        sh "terraform ${TERRAFORM_OPTS}"
+                        sh "terraform ${TERRAFORM_OPTS} -auto-approve"
                     }
                }
             }
