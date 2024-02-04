@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters { 
-        choice(name: 'TERRAFORM_OPTS', choices: ['destroy', 'apply'], description: '')
+        choice(name: 'TERRAFORM_OPTS', choices: ['apply', 'destroy'], description: '')
     }
     options {
         ansiColor('xterm')
