@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters { 
-        choice(name: 'TERRAFORM_OPTS', choices: ['apply', 'destroy'], description: '')
+        choice(name: 'TERRAFORM_OPTS', choices: ['plan', 'apply', 'destroy'], description: '')
     }
     options {
         ansiColor('xterm')
@@ -20,7 +20,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'terraform_key_sa', variable: 'terraform_key_sa')]) {
                         writeFile(file: "terraform_key_sa.json", text: "${terraform_key_sa}")
                         sh "terraform init -upgrade -input=false"
-                        sh "terraform plan"
+                        sh "terraform ${TERRAFORM_OPTS}"
                     }
                }
             }
