@@ -14,7 +14,7 @@ pipeline {
             steps {
                dir('terraform') {
                     sh "whoami"
-                    sh "sudo terraform init -migrate-state -backend-config=access_key=$AWS_ACCESS_KEY_ID -backend-config=secret_key=$AWS_SECRET_ACCESS_KEY"
+                    sh "terraform init -migrate-state -backend-config=access_key=$AWS_ACCESS_KEY_ID -backend-config=secret_key=$AWS_SECRET_ACCESS_KEY"
                }
             }
         }
