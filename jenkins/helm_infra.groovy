@@ -6,7 +6,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS') 
     }
     environment {
-        KUBECONFIG="kube.conf"
+        KUBECONFIG="kube.conf"g
     }    
     stages {
         stage("Run helmfile") {
@@ -17,7 +17,7 @@ pipeline {
                                     file(credentialsId: 'pgp_public', variable: 'helm_gpg_public')]) {
                                     
                                     writeFile(file: "kube.conf", text: "${kubeconfig}") 
-                                    sh "gpg --batch --import ${helm_gpg_public}"
+                                    //sh "gpg --batch --import ${helm_gpg_public}"
                                     sh "gpg --batch --allow-secret-key-import --import ${helm_gpg_private}"
                     }
                         sh "helm plugin list"
@@ -30,8 +30,7 @@ pipeline {
  post {
         // Clean after build
         always {
-           // cleanWs()
-           println("HEllo")
+           cleanWs()
         }
     }
 }
