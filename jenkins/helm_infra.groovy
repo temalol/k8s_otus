@@ -30,6 +30,7 @@ pipeline {
         // Clean after build
         always {
            // cleanWs()
+           println("HEllo")
         }
     }
 }
