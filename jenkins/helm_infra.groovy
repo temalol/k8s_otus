@@ -18,6 +18,7 @@ pipeline {
                         sh "helm plugin list"
                     withEnv(["KUBECONFIG=${kubeconfig}"]){
                         sh "printenv"
+                        sh "cat ${kubeconfig}"
                         sh "helmfile sync"
                     }
                     }
