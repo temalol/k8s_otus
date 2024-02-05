@@ -1,5 +1,6 @@
 helmDefaults:
   createNamespace: true
+  wait: true
 
 
 repositories:
