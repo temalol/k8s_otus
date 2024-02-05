@@ -148,14 +148,6 @@ resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
   member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
 }
 
-resource "yandex_resourcemanager_folder_iam_member" "logging-writer" {
-  # Сервисному аккаунту назначается роль "logging.writer".
-  folder_id = var.yc_folder
-  role      = "logging.writer"
-  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
-}
-
-
 resource "yandex_logging_group" "logging-group" {
   description = "Cloud Logging group"
   name        = "cluster"
