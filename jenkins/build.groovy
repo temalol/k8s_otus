@@ -1,4 +1,4 @@
-//Terraform apply/destroy pipeline
+//Docker images build and push pipeline
 
 pipeline {
     agent any
