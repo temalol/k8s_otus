@@ -1,9 +1,12 @@
-// Helmcharts installation pipeline
+// infra Helmcharts installation pipeline
 pipeline {
     agent any
     options {
         ansiColor('xterm')
         timeout(time: 1, unit: 'HOURS') 
+    }
+    parameters { 
+        choice(name: 'HELMFILE_OPTS', choices: ['sync', 'delete'], description: '')
     }
     environment {
         KUBECONFIG = './kubeconfig'
