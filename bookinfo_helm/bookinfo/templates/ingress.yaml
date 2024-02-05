@@ -7,13 +7,13 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-      - {{ .Values.ingress.hostname }}
-      secretName: ingress-cert
+  #tls:
+  #  - hosts:
+  #    - {{ .Values.ingress.hostname }}
+  #    secretName: ingress-cert
   rules:
-    - host: {{ .Values.ingress.hostname }}
-      http:
+    #- host: {{ .Values.ingress.hostname }}
+    -  http:
         paths:
           - path: / 
             pathType: Prefix
@@ -22,30 +22,5 @@ spec:
                 name: productpage
                 port:
                   number: {{ .Values.productpage.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: base-ingress-prometheus
-  namespace: prometheus
-  annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-      - {{ .Values.ingress.hostname }}
-      secretName: ingress-cert
-  rules:
-    - host: {{ .Values.ingress.hostname }}
-      http:
-        paths:
-          - path: /grafana/
-            pathType: Prefix
-            backend:
-              service: 
-                name: bookinfo-grafana
-                port:
-                  number: 3000
 
               
