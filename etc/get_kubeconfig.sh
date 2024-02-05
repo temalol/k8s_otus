@@ -1,4 +1,4 @@
-CLUSTER_ID=cat0jfiq9bcuu22beu3r
+CLUSTER_ID=catctl92sn62qte206r4
 
 
 yc managed-kubernetes cluster get --id $CLUSTER_ID --format json | \
@@ -20,7 +20,7 @@ MASTER_ENDPOINT=$(yc managed-kubernetes cluster get --id $CLUSTER_ID \
 
 
 kubectl config set-cluster sa-test2 \
-  --certificate-authority=ca.pem \
+  --insecure-skip-tls-verify=true \
   --server=$MASTER_ENDPOINT \
   --kubeconfig=test.kubeconfig
 
