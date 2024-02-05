@@ -19,7 +19,6 @@ pipeline {
                         //sh "helm plugin install https://github.com/aslafy-z/helm-git --version 0.15.1"
                         writeFile file: "kubeconfig", text: "${kubeconfig}"
                         sh "helm plugin list"
-                        sh "printenv"
                         sh "helmfile sync"
                     }
                 }
