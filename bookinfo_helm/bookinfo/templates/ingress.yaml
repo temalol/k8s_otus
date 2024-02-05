@@ -3,17 +3,23 @@ kind: Ingress
 metadata:
   name: base-ingress
   namespace: bookinfo
-  #annotations:
-  #  nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  {{- if .Values.dns.true }}
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  {{ end }}
 spec:
   ingressClassName: nginx
-  #tls:
-  #  - hosts:
-  #    - {{ .Values.ingress.hostname }}
-  #    secretName: ingress-cert
+  {{- if .Values.dns.true }}
+  tls:
+    - hosts:
+      - {{ .Values.ingress.hostname }}
+      secretName: ingress-cert
+  {{ end }}
   rules:
-    #- host: {{ .Values.ingress.hostname }}
-    -  http:
+  {{- if .Values.dns.true }}
+  - host: {{ .Values.ingress.hostname }}
+  {{ end }}
+     - http:
         paths:
           - path: / 
             pathType: Prefix
