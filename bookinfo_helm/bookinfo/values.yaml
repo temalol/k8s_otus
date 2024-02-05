@@ -1,6 +1,8 @@
 ingress:
   hostname: k8s-uptime.ru
 
+dns: "true"
+
 productpage:
   port: 9080
   probePath: /health
