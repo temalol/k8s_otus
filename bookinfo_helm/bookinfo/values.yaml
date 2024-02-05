@@ -4,29 +4,29 @@ ingress:
 productpage:
   port: 9080
   probePath: /health
-  image: examples-bookinfo-productpage-v1:latest
+  image: examples-bookinfo-productpage-v1:v1
   replicas: 1
 
 reviews:
   port: 9080
   probePath: /health
-  image_v1: examples-bookinfo-reviews-v1:latest
-  image_v2: examples-bookinfo-reviews-v2:latest
-  image_v3: examples-bookinfo-reviews-v3:latest
+  image_v1: examples-bookinfo-reviews-v1:v1
+  image_v2: examples-bookinfo-reviews-v2:v1
+  image_v3: examples-bookinfo-reviews-v3:v1
   replicas: 1
 
 details:
   port: 9080
   probePath: /health
-  image: examples-bookinfo-details-v1:latest
+  image: examples-bookinfo-details-v1:v1
   replicas: 1
 
 ratings:
   port: 9080
   probePath: /health
-  image: examples-bookinfo-ratings-v1:latest
+  image: examples-bookinfo-ratings-v1:v1
   replicas: 1
 
 registry:
   base: cr.yandex
-  id: crpbhbkl8qh584mutl3u
+  id: crpmugbv6k1atn1lldsi
