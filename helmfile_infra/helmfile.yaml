@@ -15,13 +15,13 @@ releases:
   namespace: prometheus
   chart: "kube-prometheus-stack/kube-prometheus-stack"
   needs:
-    - yc-csi-s3
+    - kube-system/yc-csi-s3
 
 - name: ingress-nginx
   namespace: ingress-nginx
   chart: "ingress-nginx/ingress-nginx"
   needs:
-    - kube-prometheus-stack
+    - prometheus/kube-prometheus-stack
 
 - name: yc-csi-s3
   namespace: kube-system
