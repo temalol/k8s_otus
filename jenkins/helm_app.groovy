@@ -1,4 +1,4 @@
-// infra Helmcharts installation pipeline
+// app Helmcharts installation pipeline
 pipeline {
     agent any
     options {
