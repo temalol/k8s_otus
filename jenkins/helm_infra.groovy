@@ -16,6 +16,8 @@ pipeline {
                                     writeFile(file: "kube.conf", text: "${kubeconfig}") 
                                     sh "gpg --batch --allow-secret-key-import --import ${helm_gpg_private}"
                     
+                        sh "helm plugin install https://github.com/jkroepke/helm-secrets --version v4.5.1"
+                        sh "helm plugin install https://github.com/aslafy-z/helm-git --version 0.15.1"
                         sh "helm plugin list"
                     withEnv(["KUBECONFIG=${kubeconfig}"]){
                         sh "helmfile sync"
