@@ -17,6 +17,7 @@ pipeline {
                         //sh "helm plugin install https://github.com/aslafy-z/helm-git --version 0.15.1"
                         sh "helm plugin list"
                     withEnv(["KUBECONFIG=${kubeconfig}"]){
+                        sh "printenv"
                         sh "helmfile sync"
                     }
                     }
