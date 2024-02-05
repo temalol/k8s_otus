@@ -23,6 +23,13 @@ details:
   probePath: /health
   image: examples-bookinfo-details-v1:v1
   replicas: 1
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "100Mi"
+      cpu: "100m"
 
 ratings:
   port: 9080
