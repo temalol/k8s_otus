@@ -24,6 +24,13 @@ reviews:
   image_v2: examples-bookinfo-reviews-v2:v1
   image_v3: examples-bookinfo-reviews-v3:v1
   replicas: 1
+  resources:
+    requests:
+      memory: "150Mi"
+      cpu: "100m"
+    limits:
+      memory: "300Mi"
+      cpu: "100m"
 
 details:
   port: 9080

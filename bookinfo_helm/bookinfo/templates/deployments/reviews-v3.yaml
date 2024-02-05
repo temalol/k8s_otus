@@ -21,6 +21,8 @@ spec:
       containers:
       - name: reviews
         image: '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.reviews.image_v3 }}'
+        resources:
+          {{- toYaml  .Values.productpage.reviews | nindent 12 }}
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
