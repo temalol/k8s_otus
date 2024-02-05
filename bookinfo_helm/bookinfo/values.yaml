@@ -9,6 +9,13 @@ productpage:
   probePath: /health
   image: examples-bookinfo-productpage-v1:v1
   replicas: 1
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "100Mi"
+      cpu: "100m"
 
 reviews:
   port: 9080
@@ -36,6 +43,13 @@ ratings:
   probePath: /health
   image: examples-bookinfo-ratings-v1:v1
   replicas: 1
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "100Mi"
+      cpu: "100m"
 
 registry:
   base: cr.yandex

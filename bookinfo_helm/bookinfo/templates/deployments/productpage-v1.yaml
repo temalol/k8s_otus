@@ -21,6 +21,8 @@ spec:
       containers:
       - name: productpage
         image:  '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.productpage.image }}'
+        resources:
+          {{- toYaml  .Values.productpage.resources | nindent 12 }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.productpage.port }}

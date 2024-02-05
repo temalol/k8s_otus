@@ -21,6 +21,8 @@ spec:
       containers:
       - name: ratings
         image: '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.ratings.image }}'
+        resources:
+          {{- toYaml  .Values.ratings.resources | nindent 12 }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.ratings.port }}
