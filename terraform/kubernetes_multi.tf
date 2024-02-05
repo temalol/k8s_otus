@@ -26,7 +26,19 @@ resource "yandex_kubernetes_cluster" "k8s-regional" {
         subnet_id = yandex_vpc_subnet.mysubnet-d.id
       }
     }
+
+    master_logging {
+      enabled                    = true
+      log_group_id               = yandex_logging_group.logging-group.id
+      kube_apiserver_enabled     = true
+      cluster_autoscaler_enabled = true
+      events_enabled             = true
+      audit_enabled              = true
+    }
+
   }
+
+ 
   service_account_id      = yandex_iam_service_account.my-regional-account.id
   node_service_account_id = yandex_iam_service_account.my-regional-account.id
   depends_on = [
@@ -135,6 +147,14 @@ resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
   role      = "kms.keys.encrypterDecrypter"
   member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
 }
+
+resource "yandex_resourcemanager_folder_iam_member" "logging-writer" {
+  # Сервисному аккаунту назначается роль "logging.writer".
+  folder_id = var.yc_folder
+  role      = "logging.writer"
+  member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
+}
+
 
 resource "yandex_logging_group" "logging-group" {
   description = "Cloud Logging group"
