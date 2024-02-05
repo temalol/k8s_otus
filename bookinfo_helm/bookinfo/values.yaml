@@ -23,7 +23,7 @@ reviews:
   image_v1: examples-bookinfo-reviews-v1:v1
   image_v2: examples-bookinfo-reviews-v2:v1
   image_v3: examples-bookinfo-reviews-v3:v1
-  replicas: 1
+  replicas: 2
   resources:
     requests:
       memory: "150Mi"
