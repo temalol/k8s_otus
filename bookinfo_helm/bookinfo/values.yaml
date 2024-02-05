@@ -1,7 +1,8 @@
 ingress:
   hostname: k8s-uptime.ru
 
-dns: "true"
+dns: 
+  enabled: false
 
 productpage:
   port: 9080

@@ -3,20 +3,20 @@ kind: Ingress
 metadata:
   name: base-ingress
   namespace: bookinfo
-  {{- if .Values.dns "true" }}
+  {{- if .Values.dns.enabled }}
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
   {{ end }}
 spec:
   ingressClassName: nginx
-  {{- if .Values.dns "true" }}
+  {{- if .Values.dns.enabled }}
   tls:
     - hosts:
       - {{ .Values.ingress.hostname }}
       secretName: ingress-cert
   {{ end }}
   rules:
-  {{- if .Values.dns "true" }}
+  {{- if .Values.dns.enabled }}
   - host: {{ .Values.ingress.hostname }}
   {{ end }}
      - http:
