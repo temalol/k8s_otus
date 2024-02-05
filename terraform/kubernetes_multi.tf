@@ -151,5 +151,6 @@ resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
 resource "yandex_logging_group" "logging-group" {
   description = "Cloud Logging group"
   name        = "cluster"
+  retention_period = "5h"
   folder_id   = var.yc_folder
 }
