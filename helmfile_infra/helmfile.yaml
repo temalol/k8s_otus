@@ -40,5 +40,4 @@ releases:
     - name: loggingFilter
       value: cat9ouqu9d35f06vbfsf
     - name: auth.json
-      file: sa-key-fl.json
-
+      file: fluentbit_secret.yaml
