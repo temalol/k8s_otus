@@ -39,5 +39,5 @@ releases:
       value: e232addbke92ham7b4bd
     - name: loggingFilter
       value: cat9ouqu9d35f06vbfsf
-    - name: auth.json
-      file: fluentbit_secret.yaml
+  secrets:
+      - fluentbit_secret.yaml
