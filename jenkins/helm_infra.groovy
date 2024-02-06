@@ -17,11 +17,13 @@ pipeline {
                dir('helmfile_infra') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'kubeconfig'),
                         file(credentialsId: 'gpg_private', variable: 'helm_gpg_private'),
-                        file(credentialsId: 'docker_secret', variable: 'docker_token')]) {
+                        file(credentialsId: 'docker_secret', variable: 'docker_token'),
+                        file(credentialsId: 'fluetbit_sa', variable: 'fluentbit')]) {
                         sh "gpg --batch --allow-secret-key-import --import ${helm_gpg_private}"
                         //sh "helm plugin install https://github.com/jkroepke/helm-secrets --version v4.5.1"
                         //sh "helm plugin install https://github.com/aslafy-z/helm-git --version 0.15.1"
                         writeFile file: "kubeconfig", text: "${kubeconfig}"
+                        writeFile file: "sa-key-fl.json", text: "${fluentbit}"
                         sh "cat ${docker_token} | helm registry login cr.yandex --username 'json_key' --password-stdin"
                         sh "helm plugin list"
                         sh "helmfile sync"

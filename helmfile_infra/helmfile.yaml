@@ -30,6 +30,15 @@ releases:
   secrets:
     - infra_secrets.yaml
 
-    
-
+- name: yc-fluent-bit
+  namespace: kube-system
+  chart: oci://cr.yandex/yc-marketplace/yandex-cloud/fluent-bit/fluent-bit
+  version: 2.1.7-3
+  set: 
+    - name: loggingGroupId
+      value: e232addbke92ham7b4bd
+    - name: loggingFilter
+      value: cat9ouqu9d35f06vbfsf
+    - name: auth.json
+      file: sa-key-fl.json
 
