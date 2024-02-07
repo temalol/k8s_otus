@@ -118,7 +118,7 @@ target "examples-bookinfo-ratings-v-unhealthy" {
   args = {
     service_version = "v-unhealthy"
   }
-  context = "./samples/bookinfo/src/ratings"
+  context = "./ratings"
 }
 
 // mysql
