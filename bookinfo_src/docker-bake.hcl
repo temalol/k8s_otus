@@ -145,5 +145,6 @@ group "default" {
     "examples-bookinfo-reviews-v2",
     "examples-bookinfo-reviews-v3",
     "examples-bookinfo-ratings-v1",
+    "examples-bookinfo-ratings-v-unhealthy"
   ]
 }
