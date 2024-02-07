@@ -13,6 +13,9 @@ spec:
       version: v1
   template:
     metadata:
+      annotations:
+          prometheus.io/port: '9080'                                                                                                              │
+          prometheus.io/scrape: true
       labels:
         app: productpage
         version: v1
