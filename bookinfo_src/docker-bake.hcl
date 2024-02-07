@@ -110,7 +110,7 @@ target "examples-bookinfo-ratings-v-unavailable" {
   args = {
     service_version = "v-unavailable"
   }
-  context = "./samples/bookinfo/src/ratings"
+  context = "./ratings"
 }
 target "examples-bookinfo-ratings-v-unhealthy" {
   tags = ["${HUB}/examples-bookinfo-ratings-v-unhealthy:${TAG}"]
