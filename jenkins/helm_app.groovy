@@ -17,7 +17,6 @@ pipeline {
                         sh "gpg --batch --allow-secret-key-import --import ${helm_gpg_private}"
                         writeFile file: "kubeconfig", text: "${kubeconfig}"
                         sh "helm plugin list"
-                        sh "helm repo updatega"
                         sh "helm secrets upgrade --wait  --install bookinfo . -f ./secret.yaml --namespace bookinfo --create-namespace"
                     }
                 }
