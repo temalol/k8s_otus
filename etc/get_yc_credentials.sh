@@ -1,6 +1,7 @@
 #set your variables here
 #################
 CLUSTER_ID=cat8jf64t7igk8k8jsfd
+SOPS_PGP=E48E7EBD5FDA8F68CE04FBEB8D3A327416AA7D97
 
 
 #################
@@ -56,7 +57,7 @@ key_id=$(yq .access_key.key_id < s3_csi_cred/csi_s3_secret.yaml)
 secret=$(yq .secret < s3_csi_cred/csi_s3_secret.yaml)
 
 yq  -n '(.secret.accessKey=strenv(key_id), .secret.secretKey=strenv(secret))' > s3_csi_cred/file.yaml
-sops -p E48E7EBD5FDA8F68CE04FBEB8D3A327416AA7D97 -e s3_csi_cred/file.yaml > s3_csi_cred/prometheus_secret.yaml
+sops -p $SOPS_PGP -e s3_csi_cred/file.yaml > s3_csi_cred/prometheus_secret.yaml
 
 ##########################################
 ################# docker credentials
@@ -64,7 +65,20 @@ mkdir docker_cred
 
 yc iam key create --service-account-name docker-account -o docker_cred/docker_key.json
 
-#####################
+##########################################
+######## fluentbit credentials
+
+mkdir fluentbit_cred
+yc iam key create  --service-account-name fluentbit --output fluentbit_cred/sa-key-fl.json
+
+sa_key_fl=$(cat fluentbit_cred/sa-key-fl.json)
+
+yq  -n '(.auth.json=strenv(sa_key_fl))' > fluentbit_cred/file.yaml
+sops -p $SOPS_PGP -e fluentbit_cred/file.yaml > fluentbit_cred/fluentbit_secret.yaml
+
+
+
+
 
 
 
