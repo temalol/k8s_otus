@@ -1,5 +1,13 @@
-CLUSTER_ID=catctl92sn62qte206r4
+#set your variables here
+#################
+CLUSTER_ID=cat8jf64t7igk8k8jsfd
 
+
+#################
+
+############### k8s config creating
+
+mkdir kubeconfig
 
 yc managed-kubernetes cluster get --id $CLUSTER_ID --format json | \
   jq -r .master.master_auth.cluster_ca_certificate | \
@@ -22,19 +30,28 @@ MASTER_ENDPOINT=$(yc managed-kubernetes cluster get --id $CLUSTER_ID \
 kubectl config set-cluster sa-test2 \
   --insecure-skip-tls-verify=true \
   --server=$MASTER_ENDPOINT \
-  --kubeconfig=test.kubeconfig
+  --kubeconfig=kubeconfig/test.kubeconfig
 
 kubectl config set-credentials admin-user \
   --token=$SA_TOKEN \
-  --kubeconfig=test.kubeconfig
+  --kubeconfig=kubeconfig/test.kubeconfig
 
 
 
 kubectl config set-context default \
   --cluster=sa-test2 \
   --user=admin-user \
-  --kubeconfig=test.kubeconfig
+  --kubeconfig=kubeconfig/test.kubeconfig
 
 kubectl config use-context default \
-  --kubeconfig=test.kubeconfig
+  --kubeconfig=kubeconfig/test.kubeconfig
+
+###################################
+##################### s3 credentials csi
+mkdir s3_csi_cred
+
+yc iam access-key create  --service-account-name bucket > s3_csi_cred/csi_s3_secret.yaml
+
+###################################
+
 
