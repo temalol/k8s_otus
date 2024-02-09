@@ -90,14 +90,34 @@ resource "yandex_iam_service_account" "bucket" {
   folder_id = var.yc_folder
 }
 
+resource "yandex_iam_service_account" "fluentbit" {
+  name        = "bucket"
+  description = "s3 bucket service account"
+  folder_id = var.yc_folder
+}
+
+
+resource "yandex_resourcemanager_folder_iam_member" "monitoring-editor" {
+  # Сервисному аккаунту назначается роль "monitoring.editor".
+  folder_id = var.yc_folder
+  role      = "monitoring.editor"
+  member    = "serviceAccount:${yandex_iam_service_account.fluentbit.id}"
+}
+
+
+resource "yandex_resourcemanager_folder_iam_member" "logging-writer" {
+  # Сервисному аккаунту назначается роль "logging.writer".
+  folder_id = var.yc_folder
+  role      = "logging.writer"
+  member    = "serviceAccount:${yandex_iam_service_account.fluentbit.id}"
+}
+
 resource "yandex_resourcemanager_folder_iam_member" "storage-editor" {
   # Сервисному аккаунту назначается роль "storage.editor".
   folder_id = var.yc_folder
   role      = "storage.editor"
   member    = "serviceAccount:${yandex_iam_service_account.bucket.id}"
 }
-
-
 
 resource "yandex_resourcemanager_folder_iam_member" "k8s-clusters-agent" {
   # Сервисному аккаунту назначается роль "k8s.clusters.agent".
@@ -149,8 +169,15 @@ resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
 }
 
 resource "yandex_logging_group" "logging-group" {
-  description = "Cloud Logging group"
+  description = "Cloud Logging group k8s"
   name        = "cluster"
-  retention_period = "5h"
+  retention_period = "24h"
+  folder_id   = var.yc_folder
+}
+
+resource "yandex_logging_group" "logging-group" {
+  description = "Cloud Logging group applicaton"
+  name        = "applicaton"
+  retention_period = "5d"
   folder_id   = var.yc_folder
 }
