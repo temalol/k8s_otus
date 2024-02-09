@@ -38,8 +38,6 @@ releases:
   version: 2.1.7-3
   set: 
     - name: loggingGroupId
-      value: e232addbke92ham7b4bd
-    - name: loggingFilter
-      value: cat9ouqu9d35f06vbfsf
+      value: e23s8igs27bsiqju3mf8
   secrets:
       - fluentbit_secret.yaml
