@@ -105,7 +105,7 @@ resource "yandex_resourcemanager_folder_iam_member" "monitoring-editor" {
 }
 
 
-resource "yandex_resourcemanager_folder_iam_member" "logging-writer" {
+resource "yandex_resourcemanager_folder_iam_member" "logging-writer-fluentbit" {
   # Сервисному аккаунту назначается роль "logging.writer".
   folder_id = var.yc_folder
   role      = "logging.writer"
