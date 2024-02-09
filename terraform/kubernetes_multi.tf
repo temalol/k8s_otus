@@ -168,14 +168,14 @@ resource "yandex_resourcemanager_folder_iam_member" "encrypterDecrypter" {
   member    = "serviceAccount:${yandex_iam_service_account.my-regional-account.id}"
 }
 
-resource "yandex_logging_group" "logging-group" {
+resource "yandex_logging_group" "logging-group-k8s" {
   description = "Cloud Logging group k8s"
   name        = "cluster"
   retention_period = "24h"
   folder_id   = var.yc_folder
 }
 
-resource "yandex_logging_group" "logging-group" {
+resource "yandex_logging_group" "logging-group-application" {
   description = "Cloud Logging group applicaton"
   name        = "applicaton"
   retention_period = "5d"
