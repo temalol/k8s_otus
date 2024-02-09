@@ -178,6 +178,6 @@ resource "yandex_logging_group" "logging-group-k8s" {
 resource "yandex_logging_group" "logging-group-application" {
   description = "Cloud Logging group applicaton"
   name        = "applicaton"
-  retention_period = "5d"
+  retention_period = "72h"
   folder_id   = var.yc_folder
 }
