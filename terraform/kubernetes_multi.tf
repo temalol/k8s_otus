@@ -29,7 +29,7 @@ resource "yandex_kubernetes_cluster" "k8s-regional" {
 
     master_logging {
       enabled                    = true
-      log_group_id               = yandex_logging_group.logging-group.id
+      log_group_id               = yandex_logging_group.logging-group-k8s.id
       kube_apiserver_enabled     = true
       cluster_autoscaler_enabled = true
       events_enabled             = true
