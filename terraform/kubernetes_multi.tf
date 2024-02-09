@@ -91,7 +91,7 @@ resource "yandex_iam_service_account" "bucket" {
 }
 
 resource "yandex_iam_service_account" "fluentbit" {
-  name        = "bucket"
+  name        = "fluentbit"
   description = "s3 bucket service account"
   folder_id = var.yc_folder
 }
