@@ -61,7 +61,7 @@ key_id=$(yq .access_key.key_id < s3_csi_cred/csi_s3_secret.yaml)
 secret=$(yq .secret < s3_csi_cred/csi_s3_secret.yaml)
 
 yq  -n '(.secret.accessKey=strenv(key_id), .secret.secretKey=strenv(secret))' > s3_csi_cred/file.yaml
-sops -p $SOPS_PGP -e s3_csi_cred/file.yaml > s3_csi_cred/prometheus_secret.yaml
+sops -p $SOPS_PGP -e s3_csi_cred/file.yaml > s3_csi_cred/infra_secrets.yaml
 
 ##########################################
 ################# docker credentials
