@@ -15,7 +15,7 @@ releases:
   namespace: prometheus
   chart: "kube-prometheus-stack/kube-prometheus-stack"
   secrets:
-    - "prometheus_secret.yaml"
+    - "telegram_secret.yaml"
   needs:
     - kube-system/yc-csi-s3
 
