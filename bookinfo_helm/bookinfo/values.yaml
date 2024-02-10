@@ -1,5 +1,5 @@
 ingress:
-  hostname: k8s-uptime.ru
+  hostname: "158.160.144.1"
 
 dns: 
   enabled: true
