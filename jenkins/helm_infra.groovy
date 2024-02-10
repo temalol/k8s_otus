@@ -24,7 +24,7 @@ pipeline {
                         writeFile file: "kubeconfig", text: "${kubeconfig}"
                         sh "cat ${docker_token} | helm registry login cr.yandex --username 'json_key' --password-stdin"
                         sh "helm plugin list"
-                        sh "helmfile sync"
+                        sh "helmfile ${HELMFILE_OPTS}"
                     }
                 }
             }
