@@ -9,17 +9,15 @@ metadata:
   {{ end }}
 spec:
   ingressClassName: nginx
-  {{- if .Values.dns.enabled }}
+{{- if .Values.dns.enabled }}
   tls:
     - hosts:
       - {{ .Values.ingress.hostname }}
       secretName: ingress-cert
-  {{ end }}
+{{ end }}
   rules:
-  {{- if .Values.dns.enabled }}
-  - host: {{ .Values.ingress.hostname }}
-  {{ end }}
-     - http:
+    - host: {{ .Values.ingress.hostname }}
+      http:
         paths:
           - path: / 
             pathType: Prefix
