@@ -1,11 +1,15 @@
 #set your variables here
 #################
-CLUSTER_ID=cat8jf64t7igk8k8jsfd
+CLUSTER_ID=catvtqnupslvnljrlu90
 SOPS_PGP=E48E7EBD5FDA8F68CE04FBEB8D3A327416AA7D97
 
 
 #################
+############# login yc cluster
+yc managed-kubernetes cluster get-credentials --id $CLUSTER_ID --external --force
 
+
+##################################
 ############### k8s config creating
 
 mkdir kubeconfig
