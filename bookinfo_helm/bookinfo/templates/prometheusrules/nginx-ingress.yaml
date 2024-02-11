@@ -58,6 +58,6 @@ spec:
           -> { namespace="{{$labels.exported_namespace}}", ingress="{{$labels.ingress}}",
           method="{{$labels.method}}", path="{{$labels.path}})" } `}}
       expr: histogram_quantile(0.95,sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{ host!~"grafana.*" }[5m])) by (le,ingress)) > 1.5
-      for: 5m
+      for: 1m
       labels:
         severity: warning
