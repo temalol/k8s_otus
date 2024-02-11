@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: ingress-nginx-monitoring
+  release-name: kube-prometheus-stack
   namespace: prometheus
 spec:
   groups:
