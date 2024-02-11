@@ -57,8 +57,8 @@ mkdir s3_csi_cred
 
 yc iam access-key create  --service-account-name bucket > s3_csi_cred/csi_s3_secret.yaml
 
-key_id=$(yq .access_key.key_id < s3_csi_cred/csi_s3_secret.yaml)
-secret=$(yq .secret < s3_csi_cred/csi_s3_secret.yaml)
+export key_id=$(yq .access_key.key_id < s3_csi_cred/csi_s3_secret.yaml)
+export secret=$(yq .secret < s3_csi_cred/csi_s3_secret.yaml)
 
 yq  -n '(.secret.accessKey=strenv(key_id), .secret.secretKey=strenv(secret))' > s3_csi_cred/file.yaml
 sops -p $SOPS_PGP -e s3_csi_cred/file.yaml > s3_csi_cred/infra_secrets.yaml
@@ -75,7 +75,7 @@ yc iam key create --service-account-name docker-account -o docker_cred/docker_ke
 mkdir fluentbit_cred
 yc iam key create  --service-account-name fluentbit --output fluentbit_cred/sa-key-fl.json
 
-sa_key_fl=$(cat fluentbit_cred/sa-key-fl.json)
+export sa_key_fl=$(cat fluentbit_cred/sa-key-fl.json)
 
 yq  -n '(.auth.json=strenv(sa_key_fl))' > fluentbit_cred/file.yaml
 sops -p $SOPS_PGP -e fluentbit_cred/file.yaml > fluentbit_cred/fluentbit_secret.yaml
