@@ -4,7 +4,7 @@ metadata:
   name: ingress-nginx-monitoring
   namespace: prometheus
   labels:
-    release-name: kube-prometheus-stack
+    release: kube-prometheus-stack
     prometheus: custom
 spec:
   groups:
