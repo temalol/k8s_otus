@@ -51,3 +51,25 @@ spec:
       for: 1m
       labels:
         severity: warning
+    - alert: NGINXTooMany400s
+      annotations:
+        description: {{` Too many {{$labels.status}} on {{$labels.host}} `}}
+        summary: {{` More than 5% of all requests returned {{$labels.status}}. Metadata
+          -> { namespace="{{$labels.exported_namespace}}", ingress="{{$labels.ingress}}",
+          method="{{$labels.method}}", path="{{$labels.path}})" } `}}
+      expr: 100 * (sum by(ingress, exported_namespace, status,method,path,host) (rate(nginx_ingress_controller_requests{status=~"4.+",
+        controller_class=~".*", host!~'grafana.*'}[5m])) / sum by(ingress, exported_namespace, status,method,path,host)
+        (rate(nginx_ingress_controller_requests{controller_class=~".*", host!~"grafana.*"}[5m]))) > 5
+      for: 1m
+      labels:
+        severity: warning
+    - alert: NGINXLatencyTooHigh
+      annotations:
+        description: {{` High P95 latency {{$labels.status}} on {{$labels.host}} `}}
+        summary: {{` Average P95 latency more than 1.5 sec {{$labels.status}}. Metadata
+          -> { namespace="{{$labels.exported_namespace}}", ingress="{{$labels.ingress}}",
+          method="{{$labels.method}}", path="{{$labels.path}})" } `}}
+      expr: histogram_quantile(0.95,sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{ host!~"grafana.*" }[5m])) by (le,ingress)) > 1.5
+      for: 5m
+      labels:
+        severity: warning
