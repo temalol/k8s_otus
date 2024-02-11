@@ -5,6 +5,7 @@ metadata:
   namespace: prometheus
   labels:
     release-name: kube-prometheus-stack
+    prometheus: custom
 spec:
   groups:
   - name: ingress-nginx
