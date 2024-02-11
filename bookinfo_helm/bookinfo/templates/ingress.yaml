@@ -6,6 +6,7 @@ metadata:
   {{- if .Values.dns.enabled }}
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/enable-access-log: "true"
   {{ end }}
 spec:
   ingressClassName: nginx
