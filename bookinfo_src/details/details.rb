@@ -48,6 +48,7 @@ server.mount_proc '/details' do |req, res|
         details = get_book_details(id, headers)
         res.body = details.to_json
         res['Content-Type'] = 'application/json'
+        res.status = 500
     rescue => error
         res.body = {'error' => error}.to_json
         res['Content-Type'] = 'application/json'
