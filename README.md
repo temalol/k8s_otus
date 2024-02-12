@@ -1,13 +1,8 @@
-# k8s_otus
+# K8s
+В качестве среды k8s для развертывания приложения был выбран managed k8s yandex cloud
 
+Тип мастера: Региональный
+Версия: 1.28
+Кластер, worker nodes и остальные облачные ресурсы разворачиваются при помощи terraform и jenkins.
 
-Ingress install
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
-helm repo update && \
-helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx  --set controller.replicaCount=2 --set controller.metrics.enabled=true \
---set-string controller.podAnnotations."prometheus\.io/scrape"="true" \
---set-string controller.podAnnotations."prometheus\.io/port"="10254"
-
-
-App install
-helm secrets upgrade  --install bookinfo . -f ./secret.yaml --namespace bookinfo
+# Terraform
