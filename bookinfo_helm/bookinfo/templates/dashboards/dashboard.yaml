@@ -6,7 +6,7 @@ metadata:
      grafana_dashboard: "1"
 data:
   nginx-ingress-dashboard.json: |-
-      {
+     {{` {
         "annotations": {
           "list": [
             {
@@ -2150,4 +2150,4 @@ data:
         "uid": "k8s-nginx-ingress-prometheus",
         "version": 1,
         "weekStart": ""
-      }
+      } `}}
