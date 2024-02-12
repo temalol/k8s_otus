@@ -9,7 +9,7 @@ pipeline {
     }
     environment {
         BOOKINFO_HUB = "cr.yandex/crpmugbv6k1atn1lldsi"
-        BOOKINFO_TAG = "v1"
+        BOOKINFO_TAG = "v2"
     }    
     stages {
         stage("build") {
