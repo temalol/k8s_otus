@@ -30,7 +30,7 @@
 ![Alt text](pics/jenkins.png?raw=true "jenkins")
 
 
-# Логика работы
+# Логика и порядок деплоя
 
 1) Первым запускается пайплайн terraform.groovy для применения ресурсов в облако.
 Для корректной работы в секреты jenkins нужно добавить AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY terraform_key_sa (ключ создается в терминальной утилите yc)
