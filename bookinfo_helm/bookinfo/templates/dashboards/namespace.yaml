@@ -5,7 +5,7 @@ metadata:
   labels:
      grafana_dashboard: "1"
 data:
-  nginx-ingress-dashboard.json: |-
+  namespace-dashboard.json: |-
     {{`     {
             "__inputs": [
                 {
