@@ -58,8 +58,11 @@
 ![Alt text](pics/bookinfo.png?raw=true "jenkins")
 
 Микросервис productpage делает запросы на details и reviews для отрисовки страницы
+
 details предоставляет информацию о книге
+
 reviews предоставляет отзыв о книге, а так-же делает запросы на ratings
+
 ratings предоставляет рейтинг книги от 1 до 5
 
 reviews представлен в качестве 3х версий
