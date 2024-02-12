@@ -196,11 +196,7 @@ dispatcher.onGet(/^\/ratings\/[0-9]*/, function (req, res) {
         }
       }
       else if (process.env.SERVICE_VERSION === 'v-unavailable' || process.env.SERVICE_VERSION === 'v-unhealthy') {
-          if (unavailable) {
               getLocalReviewsServiceUnavailable(res)
-          } else {
-              getLocalReviewsSuccessful(res, productId)
-          }
       }
       else {
         getLocalReviewsSuccessful(res, productId)
