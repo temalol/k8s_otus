@@ -38,6 +38,6 @@ releases:
   version: 2.1.7-3
   set: 
     - name: loggingGroupId
-      value: e23alehqv78lqjm2d75u
+      value: e23vkme6l614blrgrtpc
   secrets:
       - fluentbit_secret.yaml
