@@ -1,6 +1,6 @@
 #set your variables here
 #################
-CLUSTER_ID=catvtqnupslvnljrlu90
+CLUSTER_ID=cat2t9t39jvk59eatehk
 SOPS_PGP=E48E7EBD5FDA8F68CE04FBEB8D3A327416AA7D97
 
 
