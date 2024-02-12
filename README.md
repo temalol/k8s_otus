@@ -39,7 +39,7 @@
     Для этого придется совершить ряд ручных действий:
      - Заполнить переменные CLUSTER_ID и SOPS_PGP в bash скрипте etc/get_yc_credentials.sh
      - Запустить bash скрипт 
-     - Секреты docker (pull/puss) и kubeconfig добавить в jenkins
+     - Секреты docker (pull/push) и kubeconfig добавить в jenkins
      - Секреты инфраструктурных helm чартов скопировать в папку helmfile_infra (создаются уже шифрованные через sops)
      - В Jenkins загрузить файл с gpg ключами для расшифровки (Без passphrase)
      - Заккомититься
