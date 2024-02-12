@@ -16,3 +16,22 @@ spec:
       for: 1m
       labels:
         severity: critical
+  - name: flask-app
+    rules:
+    - alert: AppTooManyRequest
+      annotations:
+        description: Too many request on application pod
+      expr: 100 * (sum(rate(request_result_total{response_code=~"5.*"}[5m])) by(container) /sum(rate(request_result_total{}[5m])) by(container)) > 5
+      for: 1m
+      labels:
+        severity: critical
+  - name: flask-app
+    rules:
+    - alert: AppTooHighLatency
+      annotations:
+        description: Average latency more than 1.5 sec on application pod
+      expr: histogram_quantile(0.95,sum(rate(nginx_ingress_controller_response_duration_seconds_bucket{ingress!~".*grafana"}[5m])) by (le,ingress)) > 1.5
+      for: 1m
+      labels:
+        severity: critical
+
