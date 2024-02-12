@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: flask-app-alerts
+  namespace: prometheus
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+  - name: flask-app
+    rules:
+    - alert: AppTooMany500
+      annotations:
+        description: Too many 5xx on application pod
+      expr: 100 * (sum(rate(request_result_total{response_code=~"5.*"}[5m])) by(container) /sum(rate(request_result_total{}[5m])) by(container)) > 5
+      for: 1m
+      labels:
+        severity: critical
