@@ -85,4 +85,4 @@ ingress доступен по адресу https://k8s-uptime.ru/productpage?u=n
 Для этого, на этапе развертывания terraform создаются необходимые logging group и сервисные аккаунты.
 На следующем этапе применяется helm чарт с патченным fluent-bit для работы в yandex cloud (name: fluent-bit)
 
-# Что не получилось
+# Что не получилось и что можно улучшить
