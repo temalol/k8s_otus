@@ -57,7 +57,7 @@
 
 ![Alt text](pics/bookinfo.png?raw=true "jenkins")
 
-Микросервис productpage делает запросы на details и reviewsg для отрисовки страницы
+Микросервис productpage делает запросы на details и reviews для отрисовки страницы
 
 - **details** предоставляет информацию о книге
 - **reviews** предоставляет отзыв о книге, а так-же делает запросы на ratings
