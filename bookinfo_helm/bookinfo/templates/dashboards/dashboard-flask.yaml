@@ -6,7 +6,7 @@ metadata:
      grafana_dashboard: "1"
 data:
   flask-app-dashboard.json: |-
-        {
+    {{`   {
         "annotations": {
             "list": [
             {
@@ -744,3 +744,4 @@ data:
         "version": 14,
         "weekStart": ""
         }
+    `}}
