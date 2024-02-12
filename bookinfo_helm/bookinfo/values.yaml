@@ -48,7 +48,7 @@ details:
 ratings:
   port: 9080
   probePath: /health
-  image: examples-bookinfo-ratings-v-unavailable:v2
+  image: examples-bookinfo-ratings-v1:v1
   replicas: 1
   resources:
     requests:
