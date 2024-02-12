@@ -35,7 +35,7 @@ reviews:
 details:
   port: 9080
   probePath: /health
-  image: examples-bookinfo-details-v1:v1
+  image: examples-bookinfo-details-v1:v3
   replicas: 1
   resources:
     requests:
