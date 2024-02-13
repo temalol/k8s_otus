@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: base-ingress
+  namespace: bookinfo
+  {{- if .Values.dns.enabled }}
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/enable-access-log: "true"
+  {{ end }}
+spec:
+  ingressClassName: nginx
+{{- if .Values.dns.enabled }}
+  tls:
+    - hosts:
+      - {{ .Values.ingress.hostname }}
+      secretName: ingress-cert
+{{ end }}
+  rules:
+    - host: {{ .Values.ingress.hostname }}
+      http:
+        paths:
+          - path: / 
+            pathType: Prefix
+            backend:
+              service:
+                name: productpage
+                port:
+                  number: {{ .Values.productpage.port }}
+
+              

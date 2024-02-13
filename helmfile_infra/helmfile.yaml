@@ -1,0 +1,43 @@
+helmDefaults:
+  createNamespace: true
+  wait: true
+
+
+repositories:
+- name: kube-prometheus-stack
+  url: "git+https://github.com/temalol/kube-prometheus-stack@kube-prometheus-stack?ref=main"
+
+- name: ingress-nginx
+  url: "git+https://github.com/temalol/ingress-nginx-base@ingress-nginx?ref=main"
+
+releases:
+- name: kube-prometheus-stack
+  namespace: prometheus
+  chart: "kube-prometheus-stack/kube-prometheus-stack"
+  secrets:
+    - "telegram_secret.yaml"
+  needs:
+    - kube-system/yc-csi-s3
+
+- name: ingress-nginx
+  namespace: ingress-nginx
+  chart: "ingress-nginx/ingress-nginx"
+  needs:
+    - prometheus/kube-prometheus-stack
+
+- name: yc-csi-s3
+  namespace: kube-system
+  chart: oci://cr.yandex/yc-marketplace/yandex-cloud/csi-s3/csi-s3
+  version: 0.35.5
+  secrets:
+    - infra_secrets.yaml
+
+- name: fluent-bit
+  namespace: kube-system
+  chart: oci://cr.yandex/yc-marketplace/yandex-cloud/fluent-bit/fluent-bit
+  version: 2.1.7-3
+  set: 
+    - name: loggingGroupId
+      value: e23vkme6l614blrgrtpc
+  secrets:
+      - fluentbit_secret.yaml

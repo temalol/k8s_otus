@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings-v1
+  labels:
+    app: ratings
+    version: v1
+spec:
+  replicas: {{ .Values.ratings.replicas }}
+  selector:
+    matchLabels:
+      app: ratings
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ratings
+        version: v1
+    spec:
+      serviceAccountName: bookinfo-ratings
+      containers:
+      - name: ratings
+        image: '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.ratings.image }}'
+        resources:
+          {{- toYaml  .Values.ratings.resources | nindent 12 }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.ratings.port }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.ratings.probePath }}
+            port: {{ .Values.ratings.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.ratings.probePath }}
+            port: {{ .Values.ratings.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        securityContext:
+          runAsUser: 1000

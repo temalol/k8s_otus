@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productpage-v1
+  labels:
+    app: productpage
+    version: v1
+spec:
+  replicas: {{ .Values.productpage.replicas }}
+  selector:
+    matchLabels:
+      app: productpage
+      version: v1
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: 9080                                                                                                              │
+        prometheus.io/scrape: 'true'
+      labels:
+        app: productpage
+        version: v1
+    spec:
+      serviceAccountName: bookinfo-productpage
+      containers:
+      - name: productpage
+        image:  '{{ .Values.registry.base }}/{{ .Values.registry.id }}/{{ .Values.productpage.image }}'
+        resources:
+          {{- toYaml  .Values.productpage.resources | nindent 12 }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.productpage.port }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.productpage.probePath }}
+            port: {{ .Values.productpage.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.productpage.probePath }}
+            port: {{ .Values.productpage.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        securityContext:
+          runAsUser: 1000
+      volumes:
+      - name: tmp
+        emptyDir: {}

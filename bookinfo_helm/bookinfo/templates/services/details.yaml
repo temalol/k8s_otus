@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: details
+  labels:
+    app: details
+    service: details
+spec:
+  ports:
+  - port: {{ .Values.details.port }}
+    name: http
+  selector:
+    app: details
