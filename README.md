@@ -92,6 +92,7 @@ ingress доступен по адресу https://k8s-uptime.ru/productpage?u=n
  - К обширному количеству дефолтных алертов добавлены алерты nginx-ingress (срок сертификата, latency P95, 4xx, 5xx)
  - Прикладные алерты также настроены на превышение 5xx, latency
  - Алерты отправляются в telegram, секрет зашфирован в файле helmfile_infra/telegram_secret.yaml
+ - Алерты описываются ресурсом PrometheusRule и находятся в прикладном helm чарте в директории prometheusrules
 
 # Логирование
 
